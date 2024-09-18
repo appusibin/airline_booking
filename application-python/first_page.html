@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOKING</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .bg {
+            background-image: url("{{ url_for('static', filename='images/airplane.jpg') }}");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 30px;
+            border-radius: 40px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="date"], select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-group-inline {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-group-inline .form-group {
+            width: 48%;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="bg">
+        <div class="container">
+            <h1>BOOKING</h1>
+            <form action="{{ url_for('book_flight') }}" method="POST">
+                <div class="form-group">
+                    <label for="departure">Departure City</label>
+                    <select id="departure" name="departure" required>
+                        <option value="">Select Departure City</option>
+                        {% for city in cities %}
+                            <option value="{{ city.city_name }}">{{ city.city_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+<div class="form-group">
+                    <label for="arrival">Arrival City</label>
+                    <select id="arrival" name="arrival" required>
+                        <option value="">Select Arrival City</option>
+                        {% for city in cities %}
+                            <option value="{{ city.city_name }}">{{ city.city_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+<div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="departure-date">Departure Date</label>
+                        <input type="date" id="departure-date" name="departure_date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="return-date">Return Date</label>
+                        <input type="date" id="return-date" name="return_date">
+                    </div>
+                </div>
+<div class="form-group">
+                    <label for="passengers">Number of Passengers</label>
+                    <select id="passengers" name="passengers" required>
+                        <option value="1">1 Passenger</option>
+                        <option value="2">2 Passengers</option>
+                        <option value="3">3 Passengers</option>
+                        <option value="4">4 Passengers</option>
+                        <option value="5">5 Passengers</option>
+                    </select>
+                </div>
+<button type="submit" class="btn">Book Now</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
